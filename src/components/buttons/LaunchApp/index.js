@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {styled} from "@mui/material/styles";
 import {Button} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {ROUTES} from "../../../constants/routes";
+import {SWAP_APP_URL} from "../../../constants/routes";
 
 const AppButton = styled(Button)(({theme}) => ({
     position: "absolute",
@@ -42,10 +42,10 @@ const AppButtonAppBar = styled(Button)(({theme}) => ({
 
 export default function LaunchAppButton({isAppBar}) {
     const {t} = useTranslation();
-    const navigate = useNavigate()
 
     const onButtonClick = () => {
-        navigate(ROUTES.APP_ROUTE)
+        const newWindow = window.open(SWAP_APP_URL, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
     }
 
     if (isAppBar) {
